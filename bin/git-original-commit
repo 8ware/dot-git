@@ -10,6 +10,8 @@ elif [ -f "$gitdir/rebase-apply/original-commit" ]; then
     commit_file="$gitdir/rebase-apply/original-commit"
 elif [ -f "$gitdir/REBASE_HEAD" ]; then
     commit_file="$gitdir/REBASE_HEAD"
+elif [ -f "$gitdir/CHERRY_PICK_HEAD" ]; then
+    commit_file="$gitdir/CHERRY_PICK_HEAD"
 else
     echo "No commit file found" >&2
 fi
