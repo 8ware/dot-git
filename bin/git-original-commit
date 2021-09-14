@@ -3,5 +3,16 @@
 # https://stackoverflow.com/a/3921928
 
 gitdir=$(git rev-parse --git-dir)
-git show "$(cat "$gitdir/rebase-merge/stopped-sha")"
+if [ -f "$gitdir/rebase-merge/stopped-sha" ]; then
+    commit_file="$gitdir/rebase-merge/stopped-sha"
+elif [ -f "$gitdir/rebase-apply/original-commit" ]; then
+    # git am --show-current-patch
+    commit_file="$gitdir/rebase-apply/original-commit"
+elif [ -f "$gitdir/REBASE_HEAD" ]; then
+    commit_file="$gitdir/REBASE_HEAD"
+else
+    echo "No commit file found" >&2
+fi
+
+git show "$(cat "$commit_file")"
 
