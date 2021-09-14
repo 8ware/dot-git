@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+# https://stackoverflow.com/a/3921928
+
+gitdir=$(git rev-parse --git-dir)
+git show "$(cat "$gitdir/rebase-merge/stopped-sha")"
+

@@ -1,0 +1,6 @@
+#! /usr/bin/env bash
+
+suffix=$1
+branch=$(git branch | grep -Po '^\* \K.+')
+git checkout -b "bak/$branch$suffix" && git checkout "$branch"
+

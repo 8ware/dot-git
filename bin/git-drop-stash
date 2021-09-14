@@ -1,0 +1,12 @@
+#! /usr/bin/env bash
+
+stash="stash@{${1:-0}}"
+
+git stash show -p "$stash" || exit
+
+read -p "Drop stash? [y/N] " decision
+
+if [[ "$decision" =~ [yY] ]]; then
+    git stash drop "$stash"
+fi
+

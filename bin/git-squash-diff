@@ -1,0 +1,8 @@
+#! /usr/bin/env bash
+
+refspec=${1:-HEAD}
+count=${2:-2}
+offset=${3:-0}
+
+git diff "${refspec}~${count}~${offset}" "${refspec}~${offset}"
+
