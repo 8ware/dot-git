@@ -2,5 +2,5 @@
 
 suffix=$1
 branch=$(git branch | grep -Po '^\* \K.+')
-git checkout -b "bak/$branch$suffix" && git checkout "$branch"
+git tag "bak/$branch$suffix"
 
