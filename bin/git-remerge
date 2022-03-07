@@ -1,0 +1,37 @@
+#! /usr/bin/env bash
+
+last_commit_is_merge () {
+    local parent_count=$(git cat-file -p HEAD | grep -P "^parent\\s[0-9a-f]+$" | wc -l)
+    [ "$parent_count" -eq 2 ]
+}
+
+has_local_changes () {
+    [ "$(git diff)" ]
+}
+
+
+if [ "$#" -eq 0 ]; then
+    echo "At least the branch to merge must be specified!" >&2
+    exit 1
+fi
+
+if ! last_commit_is_merge; then
+    echo "Last commit is not a merge commit!" >&2
+    exit 1
+fi
+
+if has_local_changes; then
+    echo "Please stash your changes before proceeding!"
+    echo "(see git diff!)"
+    exit 2
+fi
+
+bak_tag="bak/merge/$(date +%Y-%m-%d.%s)"
+git tag "$bak_tag"
+echo "Backed up merge commit to '$bak_tag'"
+
+commit_msg=$(git log --format=%B -1 HEAD)
+
+git reset --hard HEAD^
+git merge -m "$commit_msg" "$@"
+
