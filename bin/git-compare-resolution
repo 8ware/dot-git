@@ -1,0 +1,11 @@
+#! /bin/bash
+
+filter_changes () {
+    grep -v -- '---\|+++' | grep '^[-+]'
+}
+
+echo "< Original | Resolved >"
+diff \
+    <(git original-commit | filter_changes) \
+    <(git diff --cached   | filter_changes)
+
