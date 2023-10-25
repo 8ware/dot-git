@@ -4,3 +4,6 @@
 	defaultBranch = main
 [pull]
 	rebase = true
+[diff "gpg"]
+	binary = true
+	textconv = gpg -d --quiet --yes --compress-algo=none --no-encrypt-to --batch --use-agent
