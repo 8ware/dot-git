@@ -9,3 +9,5 @@
     textconv = gpg -d --quiet --yes --compress-algo=none --no-encrypt-to --batch --use-agent
 [log]
     follow = true
+[commit]
+    verbose = true
