@@ -1,9 +1,9 @@
 [core]
     editor = vim
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [pull]
-	rebase = merges
+    rebase = merges
 [diff "gpg"]
-	binary = true
-	textconv = gpg -d --quiet --yes --compress-algo=none --no-encrypt-to --batch --use-agent
+    binary = true
+    textconv = gpg -d --quiet --yes --compress-algo=none --no-encrypt-to --batch --use-agent
