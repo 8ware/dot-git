@@ -14,3 +14,30 @@
 [rebase]
     autoStash = true
     autoSquash = true
+[alias]
+    a = add -p
+    ca = commit --amend
+    can = commit --amend --no-edit
+    cf = commit --no-edit --fixup
+    cm = commit -m
+    cp = cherry-pick
+    d = diff
+    dc = diff --cached
+    l = log --name-status --graph --decorate
+    ll = "!f() { git log --decorate --oneline --color=always \"$@\" | cat -n | less -REX; }; f"
+    lp = log -p -m
+    lpr = "!f() { git log -p -m -${1:?Missing limit} --reverse --color=always | less -RXp ^commit; }; f"
+    m = merge --no-ff
+    rc = rebase --continue
+    ri = rebase -i
+    rl = reset -p HEAD^
+    rtodo = rebase --edit-todo
+    s0 = stash show -p stash@{0}
+    s1 = stash show -p stash@{1}
+    s2 = stash show -p stash@{2}
+    s0p = stash pop stash@{0}
+    s1p = stash pop stash@{1}
+    s2p = stash pop stash@{2}
+    s = show -m
+    sl = "!f() { git stash list -p --color=always | less -RXp ^stash@; }; f"
+    sp = stash -p
