@@ -21,6 +21,7 @@
     cf = commit --no-edit --fixup
     cm = commit -m
     cp = cherry-pick
+    cr = compare-resolution
     d = diff
     dc = diff --cached
     l = log --name-status --graph --decorate
@@ -28,8 +29,10 @@
     lp = log -p -m
     lpr = "!f() { git log -p -m -${1:?Missing limit} --reverse --color=always | less -RXp ^commit; }; f"
     m = merge --no-ff
+    oc = original-commit
     rc = rebase --continue
     ri = rebase -i
+    rem = remerge --no-ff
     rl = reset -p HEAD^
     rtodo = rebase --edit-todo
     s0 = stash show -p stash@{0}
@@ -39,6 +42,7 @@
     s1p = stash pop stash@{1}
     s2p = stash pop stash@{2}
     s = show -m
+    sd = squash-diff
     sl = "!f() { git stash list -p --color=always | less -RXp ^stash@; }; f"
     sp = stash -p
 [pager]
