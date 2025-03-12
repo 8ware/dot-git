@@ -41,3 +41,9 @@
     s = show -m
     sl = "!f() { git stash list -p --color=always | less -RXp ^stash@; }; f"
     sp = stash -p
+[pager]
+    log  = diff-highlight | less
+    show = diff-highlight | less
+    diff = diff-highlight | less
+[interactive]
+    diffFilter = diff-highlight
