@@ -27,7 +27,7 @@
     l = log --name-status --graph --decorate
     ll = "!f() { git log --decorate --oneline --color=always \"$@\" | cat -n | less -REX; }; f"
     lp = log -p -m
-    lpr = "!f() { git log -p -m --reverse --color=always -n \"$@\" | diff-highlight | less -RXp ^commit; }; f"
+    lpr = "!f() { git log -p -m --reverse --color=always -n \"${@:-`git branch -v | grep -oP 'ahead \\K\\d+'`}\" | diff-highlight | less -RXp ^commit; }; f"
     m = merge --no-ff
     oc = original-commit
     rc = rebase --continue
