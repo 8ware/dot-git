@@ -1,0 +1,45 @@
+#! /bin/bash
+
+set -e
+
+
+: ${GIT_ID_PATH:=${XDG_CONFIG_HOME:-${HOME}/.config}/git/ids}
+
+
+usage () {
+    echo "Usage: $0 <profile>" >&2
+    available_profiles >&2
+}
+
+available_profiles () {
+    echo "Available profiles:"
+    ls "${GIT_ID_PATH}" | grep -oP '[^/]+(?=\.id)' | sed 's/^/* /'
+}
+
+
+profile=$1
+
+if [ -z "${profile}" ]; then
+    usage
+    exit 1
+fi
+
+id_file="${GIT_ID_PATH}/${profile}.id"
+
+if [ ! -f "${id_file}" ]; then
+    echo "Non-existent identity: ${id_file}" >&2
+    available_profiles >&2
+    exit 2
+fi
+
+if (git config user.name || git config user.email) >/dev/null; then
+    echo "Identity already set" >&2
+    exit
+fi
+
+name=$(git config -f "${id_file}" user.name)
+email=$(git config -f "${id_file}" user.email)
+
+echo "Using identity '${name} <${email}>'"
+git config user.name "${name}"
+git config user.email "${email}"
