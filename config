@@ -1,3 +1,5 @@
+[user]
+    useConfigOnly = true
 [core]
     editor = vim
 [init]
