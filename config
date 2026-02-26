@@ -47,6 +47,7 @@
     sd = squash-diff
     sl = "!f() { git stash list -p --color=always | less -RXp ^stash@; }; f"
     sp = stash -p
+    ic = "!f() { git id $1 && git add README.md && git cm 'Initial commit, add README'; }; f"
 [pager]
     log  = diff-highlight | less
     show = diff-highlight | less
